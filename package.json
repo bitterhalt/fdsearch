@@ -1,0 +1,29 @@
+{
+  "name": "fdsearch",
+  "title": "FD Search",
+  "description": "Search files on demand with fd, without an index",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "bazz",
+  "categories": ["Productivity"],
+  "icon": "extension_icon.svg",
+  "commands": [
+    {
+      "name": "search-files",
+      "title": "Search Files (fd)",
+      "subtitle": "Search the filesystem without an index",
+      "description": "Search files across common system locations using fd",
+      "mode": "view"
+    }
+  ],
+  "scripts": {
+    "build": "vici build",
+    "dev": "vici develop"
+  },
+  "dependencies": {
+    "@vicinae/api": "^0.20.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
