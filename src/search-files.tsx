@@ -1,4 +1,4 @@
-import { Action, ActionPanel, List } from "@vicinae/api";
+import { Action, ActionPanel, closeMainWindow, List, open } from "@vicinae/api";
 import { useEffect, useState } from "react";
 import { spawn, type ChildProcess } from "node:child_process";
 import { homedir } from "node:os";
@@ -96,7 +96,13 @@ export default function SearchFiles() {
           icon="📄"
           actions={
             <ActionPanel>
-              <Action.Open title="Open File" target={path} />
+              <Action
+                title="Open File"
+                onAction={async () => {
+                  await open(path);
+                  await closeMainWindow();
+                }}
+              />
               {!path.startsWith(`${homedir()}/`) && path !== homedir() && (
                 <Action.RunInTerminal title="Edit as Administrator (sudoedit)" args={["sudoedit", path]} />
               )}
