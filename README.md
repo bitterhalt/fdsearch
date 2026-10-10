@@ -7,6 +7,7 @@ A Vicinae extension for searching files with [`fd`](https://github.com/sharkdp/f
 - Search updates as you type, with a short debounce to avoid spawning a process for every keystroke.
 - Searches hidden and ignored files, matching the behavior of `fd -HI -t f`.
 - Opens selected files with Vicinae's standard **Open File** action.
+- Offers **Edit as Administrator (sudoedit)** for files outside `$HOME`.
 - Includes a **Copy Path** action.
 - Limits the displayed results to 500; refine the query if you need to narrow the search.
 
@@ -50,3 +51,4 @@ npm run build
 - Matching follows `fd`'s regular-expression pattern syntax.
 - Permission and traversal errors are suppressed, as in the original script.
 - Symlink directories are not followed by `fd`'s default behavior.
+- The administrator edit action opens `sudoedit` in a terminal. Configure `SUDO_EDITOR`, `VISUAL`, or `EDITOR` to choose the editor; sudo may prompt for authentication in the terminal.

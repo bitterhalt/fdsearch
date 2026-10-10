@@ -97,6 +97,9 @@ export default function SearchFiles() {
           actions={
             <ActionPanel>
               <Action.Open title="Open File" target={path} />
+              {!path.startsWith(`${homedir()}/`) && path !== homedir() && (
+                <Action.RunInTerminal title="Edit as Administrator (sudoedit)" args={["sudoedit", path]} />
+              )}
               <Action.CopyToClipboard title="Copy Path" content={path} />
             </ActionPanel>
           }
