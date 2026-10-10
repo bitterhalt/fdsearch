@@ -2,11 +2,17 @@ import { Action, ActionPanel, closeMainWindow, List, open } from "@vicinae/api";
 import { useEffect, useState } from "react";
 import { spawn, type ChildProcess } from "node:child_process";
 import { homedir } from "node:os";
+import { isAbsolute, relative, sep } from "node:path";
 
 const MAX_RESULTS = 500;
 const SEARCH_DELAY_MS = 250;
 const EXCLUDED_DIRS = [".icons", "Pictures", "Videos", "bin", "icons", "lib", "lib64", "man"];
 const SEARCH_ROOTS = [homedir(), "/etc", "/usr", "/opt", "/var", "/srv"];
+
+function isInsideHome(path: string): boolean {
+  const relativePath = relative(homedir(), path);
+  return relativePath === "" || (relativePath !== ".." && !relativePath.startsWith(`..${sep}`) && !isAbsolute(relativePath));
+}
 
 type SearchState = {
   query: string;
@@ -103,7 +109,7 @@ export default function SearchFiles() {
                   await closeMainWindow();
                 }}
               />
-              {!path.startsWith(`${homedir()}/`) && path !== homedir() && (
+              {!isInsideHome(path) && (
                 <Action.RunInTerminal title="Edit as Administrator (sudoedit)" args={["sudoedit", path]} />
               )}
               <Action.CopyToClipboard title="Copy Path" content={path} />

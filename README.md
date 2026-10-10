@@ -47,8 +47,8 @@ npm run build
 
 ## Behavior notes
 
+- This is tested only on Linux, so probably No-Go on Windows or 🍎
 - Search is skipped until the query is non-empty.
 - Matching follows `fd`'s regular-expression pattern syntax.
-- Permission and traversal errors are suppressed, as in the original script.
 - Symlink directories are not followed by `fd`'s default behavior.
 - The administrator edit action opens `sudoedit` in a terminal. Configure `SUDO_EDITOR`, `VISUAL`, or `EDITOR` to choose the editor; sudo may prompt for authentication in the terminal.
